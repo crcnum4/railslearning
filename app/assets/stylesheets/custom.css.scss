@@ -47,6 +47,16 @@ $navbar-default-bg: #441111;
 .fluid-footer {
   background-color: #151515;
   height:20vh;
+  clear: both;
+}
+
+.article-actions {
+  border-top: 1px solid #eaeaea;
+  padding-top: 5px;
+}
+
+.description {
+  margin-top: 0px;
 }
 
 .footer {
