@@ -4,6 +4,7 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
   
   def setup
     @user = User.create(username: "John", email: "john@example.com", password: "password", admin: true)
+    @category = Category.create(name: "programming")
   end
   
   test "get new category form and create category" do
@@ -27,6 +28,15 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
     assert_template 'categories/new'
     assert_select 'h2.panel-title'
     assert_select 'div.panel-body'
+  end
+  
+  test "edit category name" do
+    sign_in_as(@user, "password")
+    get edit_category_path(id: 1)
+    assert_template 'categories/edit'
+    patch_via_redirect edit_categories_path, category: {id: '1', name: "program"}
+    assert_template 'categories/index'
+    assert_match "program"
   end
   
 end
